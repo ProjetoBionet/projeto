@@ -142,7 +142,7 @@ public class LobbyActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-            Intent intent = new Intent(LobbyActivity.this, Pesquisa.class);
+            Intent intent = new Intent(LobbyActivity.this, PesquisaMaterial.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
@@ -153,7 +153,7 @@ public class LobbyActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_meusmateriais){
 
-            Intent intent = new Intent(LobbyActivity.this, MeusMateriais.class);
+            Intent intent = new Intent(LobbyActivity.this, meusMateriais.class);
             intent.putExtra("status", "Ativos");
             startActivity(intent);
         }

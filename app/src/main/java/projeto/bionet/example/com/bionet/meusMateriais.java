@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MeusMateriais extends AppCompatActivity {
+public class meusMateriais extends AppCompatActivity {
 
     ListView lista;
     private FirebaseAuth mAuth;
@@ -90,19 +90,19 @@ public class MeusMateriais extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 if (checkedId == R.id.rbAtivos) {
-                    Intent intent = new Intent(MeusMateriais.this, MeusMateriais.class);
+                    Intent intent = new Intent(meusMateriais.this, meusMateriais.class);
                     intent.putExtra("status", "Ativos");
                     finish();
                     startActivity(intent);
 
                 } else if (checkedId == R.id.rbInativos) {
-                    Intent intent = new Intent(MeusMateriais.this, MeusMateriais.class);
+                    Intent intent = new Intent(meusMateriais.this, meusMateriais.class);
                     intent.putExtra("status", "Inativos");
                     finish();
                     startActivity(intent);
 
                 } else if (checkedId == R.id.rbFinalizados) {
-                    Intent intent = new Intent(MeusMateriais.this, MeusMateriais.class);
+                    Intent intent = new Intent(meusMateriais.this, meusMateriais.class);
                     intent.putExtra("status", "Finalizados");
                     finish();
                     startActivity(intent);
@@ -182,11 +182,11 @@ public class MeusMateriais extends AppCompatActivity {
     public void editarItem(View v) {
 
         if (listIndex == -1) {
-            Toast.makeText(MeusMateriais.this, "Selecione um item!",
+            Toast.makeText(meusMateriais.this, "Selecione um item!",
                     Toast.LENGTH_LONG).show();
         } else {
             Coleta coleta = coletaArrayRef.get(listIndex);
-            Intent intent = new Intent(MeusMateriais.this, cadastroColeta.class);
+            Intent intent = new Intent(meusMateriais.this, cadastroColeta.class);
             intent.putExtra("atividade", "alterar");
             intent.putExtra("coleta", coleta);
             startActivity(intent);
@@ -197,7 +197,7 @@ public class MeusMateriais extends AppCompatActivity {
     public void ativoInativo(View v) {
 
         if (listIndex == -1) {
-            Toast.makeText(MeusMateriais.this, "Selecione um item!",
+            Toast.makeText(meusMateriais.this, "Selecione um item!",
                     Toast.LENGTH_SHORT).show();
         }else {
             RadioButton rbInativos = (RadioButton) findViewById(R.id.rbInativos);
@@ -211,14 +211,14 @@ public class MeusMateriais extends AppCompatActivity {
             db.collection("Coleta").document(coleta.getId()).set(coleta).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(MeusMateriais.this, "Status do material alterado com sucesso!",
+                    Toast.makeText(meusMateriais.this, "Status do material alterado com sucesso!",
                             Toast.LENGTH_SHORT).show();
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(MeusMateriais.this, "Erro ao alterar status do cadastro!",
+                            Toast.makeText(meusMateriais.this, "Erro ao alterar status do cadastro!",
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -233,7 +233,7 @@ public class MeusMateriais extends AppCompatActivity {
 
 
         if (listIndex == -1) {
-            Toast.makeText(MeusMateriais.this, "Selecione um item!",
+            Toast.makeText(meusMateriais.this, "Selecione um item!",
                     Toast.LENGTH_SHORT).show();
         } else {
             RadioButton rbFinalizados = (RadioButton) findViewById(R.id.rbFinalizados);
@@ -247,14 +247,14 @@ public class MeusMateriais extends AppCompatActivity {
             db.collection("Coleta").document(coleta.getId()).set(coleta).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(MeusMateriais.this, "Status do material alterado com sucesso!",
+                    Toast.makeText(meusMateriais.this, "Status do material alterado com sucesso!",
                             Toast.LENGTH_SHORT).show();
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(MeusMateriais.this, "Erro ao alterar status do cadastro!",
+                            Toast.makeText(meusMateriais.this, "Erro ao alterar status do cadastro!",
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
