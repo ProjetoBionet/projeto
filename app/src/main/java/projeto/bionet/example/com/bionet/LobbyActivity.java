@@ -2,7 +2,6 @@ package projeto.bionet.example.com.bionet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -140,16 +140,30 @@ public class LobbyActivity extends AppCompatActivity
             intent.putExtra("atividade","cadastrar");
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.pesquisamaterial) {
             Intent intent = new Intent(LobbyActivity.this, PesquisaMaterial.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 
+        }else if(id == R.id.nav_alterarp){
+            Intent intent = new Intent(LobbyActivity.this, Cadastro_Usuario.class);
+            intent.putExtra("atividade","alterar");
+            startActivity(intent);
+
+        } else if(id == R.id.nav_alteraS){
+            Intent intent = new Intent(LobbyActivity.this, alterarSenha.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(LobbyActivity.this, "Logout efetuado com sucesso!",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(LobbyActivity.this,Login.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_meusmateriais){
 
@@ -166,4 +180,7 @@ public class LobbyActivity extends AppCompatActivity
     private void Logout(View v){
 
     }
+
+
+
 }

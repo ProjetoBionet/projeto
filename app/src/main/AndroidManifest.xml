@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CadastroPessoaJuridica"
+            android:name=".cadastroPJuridica"
             android:label="Cadastro Pessoa Jurídica">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
@@ -52,8 +52,22 @@
             </intent-filter>
         </activity>
         <activity android:name=".meusMateriais" />
-        <activity android:name=".Resultado_Pesquisa" />
-        <activity android:name=".PesquisaMaterial"></activity>
+        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name=".PesquisaMaterial">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Splashscreen"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".alterarSenha"></activity>
     </application>
 
 </manifest>

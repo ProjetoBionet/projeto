@@ -1,147 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context="projeto.bionet.example.com.bionet.PesquisaMaterial">
+    android:layout_margin="16dp"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txMaterial"
-        android:layout_width="wrap_content"
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:background="#fff"
+        android:elevation="2dp"></SearchView>
+
+    <ListView
+        android:choiceMode="singleChoice"
+        android:id="@+id/listaResultados"
+        android:layout_below="@+id/searchView"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp"
-        android:text="Material" />
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"/>
 
-    <Spinner
-        android:id="@+id/spMaterial"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txMaterial"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp" />
-
-    <TextView
-        android:id="@+id/txPagamento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_weight="1"
-        android:text="Pagamento" />
-
-    <RadioButton
-        android:id="@+id/rbDinheiro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txPagamento"
-        android:layout_below="@+id/txPagamento"
-        android:layout_marginTop="22dp"
-        android:text="Dinheiro" />
-
-    <RadioButton
-        android:id="@+id/rbCredito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rbDinheiro"
-        android:layout_below="@+id/rbDinheiro"
-        android:layout_marginTop="20dp"
-        android:text="Credito" />
-
-    <RadioButton
-        android:id="@+id/rbDebito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/rbCredito"
-        android:layout_marginStart="57dp"
-        android:layout_toEndOf="@+id/rbDinheiro"
-        android:text="Debito" />
-
-    <RadioButton
-        android:id="@+id/rbMercadoPago"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rbDebito"
-        android:layout_alignTop="@+id/rbCredito"
-        android:text="Mercado Pago" />
-
-    <TextView
-        android:id="@+id/txModalidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rbCredito"
-        android:layout_below="@+id/rbCredito"
-        android:layout_marginTop="43dp"
-        android:layout_weight="1"
-        android:text="Modalidade" />
-
-    <RadioButton
-        android:id="@+id/rbDoacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txModalidade"
-        android:layout_below="@+id/txModalidade"
-        android:layout_marginTop="21dp"
-        android:text="Doação" />
-
-    <RadioButton
-        android:id="@+id/rbVenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rbMercadoPago"
-        android:layout_alignTop="@+id/rbDoacao"
-        android:text="Venda" />
-
-    <TextView
-        android:id="@+id/txEntrega"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rbDoacao"
-        android:layout_below="@+id/rbDoacao"
-        android:layout_marginTop="41dp"
-        android:text="Entrega" />
-
-    <RadioButton
-        android:id="@+id/rbSim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/txEntrega"
-        android:layout_below="@+id/txEntrega"
-        android:layout_marginTop="26dp"
-        android:text="Sim" />
-
-    <RadioButton
-        android:id="@+id/rbNao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/rbSim"
-        android:layout_alignStart="@+id/rbVenda"
-        android:text="Não" />
-
-    <Button
-        android:id="@+id/btVoltar"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/rbNao"
-        android:text="Voltar"
-        android:onClick="onClick"
-        />
-
-    <Button
-        android:id="@+id/btPesquisar"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/txMaterial"
-        android:text="Pesquisar"
-        android:onClick="onClick"/>
-
-</RelativeLayout>
+</LinearLayout>

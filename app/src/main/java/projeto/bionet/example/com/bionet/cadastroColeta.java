@@ -75,10 +75,10 @@ public class cadastroColeta extends AppCompatActivity {
     private Address retornoCep;
     private Coleta coleta, coletaAlt;
 
-    private EditText etQuantidade, etValor, etCep, etRua, etNum, etComplemento, etBairro, etCidade, etEstado;
+    private EditText etQuantidade, etValor, etTelefone, etCep, etRua, etNum, etComplemento, etBairro, etCidade, etEstado;
     private Spinner spMaterial, spMedida, spModalidade, spEntrega;
     private CheckBox cbDinheiro, cbCredito, cbDebito, cbMercadoPago;
-    private String material, medida, modalidade, quantidade, entrega, valor, cep, rua, num, complemento, bairro, cidade, estado, teste;
+    private String material, medida, modalidade, quantidade, entrega, telefone, valor, cep, rua, num, complemento, bairro, cidade, estado, teste;
     private Boolean dinheiro, debito, credito, mercadoPago;
     DocumentReference profileRef, coletaRef;
 
@@ -86,12 +86,7 @@ public class cadastroColeta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_coleta);
-
-
-
-
         selectedImage = Uri.parse("android.resource://projeto.bionet.example.com.bionet/drawable/bionet");
-
         cbDinheiro = (CheckBox) findViewById(R.id.checkboxDinheiro);
         cbCredito = (CheckBox) findViewById(R.id.checkboxCredito);
         cbDebito = (CheckBox) findViewById(R.id.checkboxDebito);
@@ -111,6 +106,7 @@ public class cadastroColeta extends AppCompatActivity {
         etValor = (EditText) findViewById(R.id.etValor);
         etQuantidade = (EditText) findViewById(R.id.etQuantidade);
 
+        etTelefone = (EditText) findViewById(R.id.telefone);
         etCep = (EditText) findViewById(R.id.cep);
         etRua = (EditText) findViewById(R.id.rua);
         etNum = (EditText) findViewById(R.id.num);
@@ -126,6 +122,7 @@ public class cadastroColeta extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document != null) {
+                        etTelefone.setText(document.getString("telefone"));
                         etRua.setText(document.getString("rua"));
                         etNum.setText(document.getString("numero"));
                         etCep.setText(document.getString("cep"));
@@ -199,6 +196,7 @@ public class cadastroColeta extends AppCompatActivity {
         quantidade = etQuantidade.getText().toString();
         entrega = spEntrega.getSelectedItem().toString();
         valor = etValor.getText().toString();
+        telefone = etTelefone.getText().toString().trim();
 
         cep = etCep.getText().toString().trim();
         rua = etRua.getText().toString().trim();
@@ -211,6 +209,10 @@ public class cadastroColeta extends AppCompatActivity {
         if (TextUtils.isEmpty(quantidade)) {
             etQuantidade.setError("Preencha a quantidade do Material");
             etQuantidade.requestFocus();
+            return;
+        }else if (TextUtils.isEmpty(telefone) || telefone.length() < 11){
+            etTelefone.setError("Preencha o campo Telefone corretamente");
+            etTelefone.requestFocus();
             return;
         }
         else{
@@ -234,20 +236,19 @@ public class cadastroColeta extends AppCompatActivity {
                 Float vlr = Float.valueOf(valor);
 
                 coleta = new Coleta(randId, material, medida, modalidade, qtd, entrega,
-                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(), Calendar.getInstance().getTime(), status,
+                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(), telefone, Calendar.getInstance().getTime(), status,
                         vlr, dinheiro, debito, credito, mercadoPago);
             } else {
                 coleta = new Coleta(randId, material, medida, modalidade, qtd, entrega,
-                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(), Calendar.getInstance().getTime(), status
+                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(), telefone, Calendar.getInstance().getTime(), status
                 );
             }
 
-            // Adicionar verificação de id já existente, posso chegar se documento existe na coleção.
 
             db.collection("Coleta").document(randId).set(coleta).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    //String x = randId;
+
                     uploadImage(randId);
                 }
             })
@@ -266,24 +267,31 @@ public class cadastroColeta extends AppCompatActivity {
                 Float vlr = Float.valueOf(valor);
 
                 coleta = new Coleta(coletaAlt.getId(), material, medida, modalidade, qtd, entrega,
-                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(), Calendar.getInstance().getTime(), coletaAlt.getStatus(),
+                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(), telefone,Calendar.getInstance().getTime(), coletaAlt.getStatus(),
                         vlr, dinheiro, debito, credito, mercadoPago);
             } else {
                 coleta = new Coleta(coletaAlt.getId(), material, medida, modalidade, qtd, entrega,
-                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(), Calendar.getInstance().getTime(), coletaAlt.getStatus()
+                        cep, rua, num, complemento, bairro, cidade, estado, user.getUid(),telefone, Calendar.getInstance().getTime(), coletaAlt.getStatus()
                 );
             }
 
 
-            if (selectedImage.equals("android.resource://projeto.bionet.example.com.bionet/drawable/bionet")){
+            if (selectedImage.toString().equalsIgnoreCase("android.resource://projeto.bionet.example.com.bionet/drawable/bionet")){
+                progressDialog = new ProgressDialog(this);
+                progressDialog.setMessage("Alterando...");
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.show();
+
                 db.collection("Coleta").document(coletaAlt.getId()).set(coleta).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        progressDialog.dismiss();
                         Toast.makeText(cadastroColeta.this, "Alteração realizada com sucesso!",
                                 Toast.LENGTH_LONG).show();
                         Intent intentNew = new Intent(cadastroColeta.this, LobbyActivity.class);
                         startActivity(intentNew);
                         finish();
+
                     }
                 })
                         .addOnFailureListener(new OnFailureListener() {
@@ -291,8 +299,10 @@ public class cadastroColeta extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(cadastroColeta.this, "Erro ao realizar alteração!",
                                         Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
                             }
                         });
+
 
 
             }else{
@@ -406,6 +416,11 @@ public class cadastroColeta extends AppCompatActivity {
 
         cep = etCep.getText().toString().trim();
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Pesquisando Endereço...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -427,37 +442,49 @@ public class cadastroColeta extends AppCompatActivity {
                     Gson gson = new Gson();
                     retornoCep = gson.fromJson(teste, Address.class);
 
-                    etRua.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            etRua.setText(retornoCep.getLogradouro());
-                        }
-                    });
+                    if (retornoCep.getBairro() == null){
 
-                    etBairro.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            etBairro.setText(retornoCep.getBairro());
-                        }
-                    });
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(cadastroColeta.this, "CEP Inválido!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
 
-                    etCidade.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            etCidade.setText(retornoCep.getLocalidade());
-                        }
-                    });
+                    }else {
+                        etRua.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                etRua.setText(retornoCep.getLogradouro());
+                            }
+                        });
 
-                    etEstado.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            etEstado.setText(retornoCep.getUf());
-                        }
-                    });
+                        etBairro.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                etBairro.setText(retornoCep.getBairro());
+                            }
+                        });
 
+                        etCidade.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                etCidade.setText(retornoCep.getLocalidade());
+                            }
+                        });
+
+                        etEstado.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                etEstado.setText(retornoCep.getUf());
+                            }
+                        });
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                progressDialog.dismiss();
             }
         }).start();
 
@@ -494,17 +521,13 @@ public class cadastroColeta extends AppCompatActivity {
         return saltStr;
     }
 
-     public void uploadImage(String randId) {
+    public void uploadImage(String randId) {
         //create reference to images folder and assing a name to the file that will be uploaded
-
-
-
 
         imageRef = storageRef.child("coleta/"+randId);
 
         //creating and showing progress dialog
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMax(100);
         progressDialog.setMessage("Cadastrando...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
