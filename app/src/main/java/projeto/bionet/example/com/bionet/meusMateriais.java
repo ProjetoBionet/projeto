@@ -46,11 +46,14 @@ import java.util.Map;
 public class meusMateriais extends AppCompatActivity {
 
     ListView lista;
+    private FirebaseAuth mAuth;
     FirebaseFirestore db;
     FirebaseUser user;
+    DocumentReference coletaRef;
     ArrayList<Coleta> coletaArrayRef;
     String status;
     private ProgressDialog mProgressDialog;
+    private StorageReference storageRef;
     RadioGroup RGrupo;
     RadioButton rButton;
     Intent getIntent;
@@ -173,9 +176,15 @@ public class meusMateriais extends AppCompatActivity {
 
     public void onClickRadioButton(View v) {
         View vMain = ((View) v.getParent());
+        // getParent() must be added 'n' times,
+        // where 'n' is the number of RadioButtons' nested parents
+        // in your case is one.
 
+        // uncheck previous checked button.
         if (listRadioButton != null) listRadioButton.setChecked(false);
+        // assign to the variable the new one
         listRadioButton = (RadioButton) v;
+        // find if the new one is checked or not, and set "listIndex"
         if (listRadioButton.isChecked()) {
             listIndex = ((ViewGroup) vMain.getParent()).indexOfChild(vMain);
         } else {
@@ -234,6 +243,8 @@ public class meusMateriais extends AppCompatActivity {
     }
 
     public void ativoFinalizado(View v) {
+
+
 
         if (listIndex == -1) {
             Toast.makeText(meusMateriais.this, "Selecione um item!",

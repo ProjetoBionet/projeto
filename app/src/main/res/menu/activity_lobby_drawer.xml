@@ -11,13 +11,6 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Alterar perfil" />
         <item
-<<<<<<< HEAD
-=======
-            android:id="@+id/nav_alteraS"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Alterar senha" />
-        <item
->>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
             android:title="Noticias" />
@@ -26,7 +19,7 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Cadastro Material" />
         <item
-            android:id="@+id/pesquisamaterial"
+            android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Pesquisa Material" />
 
