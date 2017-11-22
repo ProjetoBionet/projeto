@@ -146,6 +146,7 @@ public class LobbyActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
+<<<<<<< HEAD
         }else if(id == R.id.nav_alterarp){
             Intent intent = new Intent(LobbyActivity.this, Cadastro_Usuario.class);
             intent.putExtra("atividade","alterar");
@@ -158,6 +159,8 @@ public class LobbyActivity extends AppCompatActivity
             startActivity(intent);
 
 >>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
+=======
+>>>>>>> parent of a1542f8... .
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

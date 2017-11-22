@@ -51,6 +51,7 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".meusMateriais" />
 <<<<<<< HEAD
         <activity android:name=".ResetPasswordActivity"></activity>
@@ -72,6 +73,9 @@
         </activity>
         <activity android:name=".alterarSenha"></activity>
 >>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
+=======
+        <activity android:name=".meusMateriais"></activity>
+>>>>>>> parent of a1542f8... .
     </application>
 
 </manifest>
