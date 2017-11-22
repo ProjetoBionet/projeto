@@ -1,13 +1,16 @@
 package projeto.bionet.example.com.bionet;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.AutoCompleteTextView;
+=======
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,8 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+<<<<<<< HEAD
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+=======
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,20 +34,25 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
 import static android.support.design.R.styleable.TextInputLayout;
+=======
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
 public class Cadastro_Usuario extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     private FirebaseUser user;
+<<<<<<< HEAD
     private EditText etEmail, etSenha, etNome, etSnome, etCpf, etCep, etRua, etNum, etComplemento, etBairro, etCidade, etEstado;
     private String email, senha, nome, snome, cpf, cep, rua, num, complemento, bairro, cidade, estado, teste;
+=======
+    private EditText etEmail, etSenha, etNome, etSnome, etTelefone, etCpf, etCep, etRua, etNum, etComplemento, etBairro, etCidade, etEstado;
+    private String email, senha, nome, snome, cpf, telefone, cep, rua, num, complemento, bairro, cidade, estado, teste;
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
     private Address retornoCep;
     DocumentReference profileRef;
     RadioGroup RGrupo;
@@ -77,6 +88,10 @@ public class Cadastro_Usuario extends AppCompatActivity {
             etSnome = (EditText) findViewById(R.id.sobrenome);
             etCpf = (EditText) findViewById(R.id.cpf);
             etCpf.setEnabled(false);
+<<<<<<< HEAD
+=======
+            etTelefone = (EditText) findViewById(R.id.telefone);
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
             etCep = (EditText) findViewById(R.id.cep);
             etRua = (EditText) findViewById(R.id.rua);
             etNum = (EditText) findViewById(R.id.num);
@@ -110,6 +125,10 @@ public class Cadastro_Usuario extends AppCompatActivity {
                             etNome.setText(document.getString("nome"));
                             etSnome.setText(document.getString("sobrenome"));
                             etCpf.setText(document.getString("cpf"));
+<<<<<<< HEAD
+=======
+                            etTelefone.setText(document.getString("telefone"));
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
                         } else {
                             Toast.makeText(Cadastro_Usuario.this, "Falha ao carregar dados.",
                                     Toast.LENGTH_LONG).show();
@@ -119,6 +138,7 @@ public class Cadastro_Usuario extends AppCompatActivity {
                 }
             });
 
+<<<<<<< HEAD
 
             etNome = (EditText) findViewById(R.id.nome);
             etSnome = (EditText) findViewById(R.id.sobrenome);
@@ -130,6 +150,10 @@ public class Cadastro_Usuario extends AppCompatActivity {
             etCidade = (EditText) findViewById(R.id.cidade);
             etBairro = (EditText) findViewById(R.id.bairro);
             etEstado = (EditText) findViewById(R.id.estado);
+=======
+// Talvez apagando isso não interfira em nada, já tá carregando os dados antes, e depois tbm.
+
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
 
             ((LinearLayout) RGrupo.getParent()).removeView(RGrupo);
             getSupportActionBar().setTitle("Alteração de Cadastro");
@@ -149,6 +173,10 @@ public class Cadastro_Usuario extends AppCompatActivity {
             etCidade = (EditText) findViewById(R.id.cidade);
             etBairro = (EditText) findViewById(R.id.bairro);
             etEstado = (EditText) findViewById(R.id.estado);
+<<<<<<< HEAD
+=======
+            etTelefone = (EditText) findViewById(R.id.telefone);
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
 
             RGrupo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -178,6 +206,10 @@ public class Cadastro_Usuario extends AppCompatActivity {
             bairro = etBairro.getText().toString().trim();
             cidade = etCidade.getText().toString().trim();
             estado = etEstado.getText().toString().trim();
+<<<<<<< HEAD
+=======
+            telefone = etTelefone.getText().toString().trim();
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
             if (TextUtils.isEmpty(nome)) {
                 etNome.setError("O campo Nome deve ser preenchido!");
                 etNome.requestFocus();
@@ -190,6 +222,13 @@ public class Cadastro_Usuario extends AppCompatActivity {
                 etCep.setError("O campo CEP deve ser preenchido!");
                 etCep.requestFocus();
                 return;
+<<<<<<< HEAD
+=======
+            }else if (TextUtils.isEmpty(telefone) || telefone.length() < 11){
+                etTelefone.setError("Preencha o campo Telefone corretamente");
+                etTelefone.requestFocus();
+                return;
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
             }
             // Talvez esses próximos não sejam necessários tendo em vista a checagem do CEP
             else if (TextUtils.isEmpty(rua)) {
@@ -222,6 +261,10 @@ public class Cadastro_Usuario extends AppCompatActivity {
             bairro = etBairro.getText().toString().trim();
             cidade = etCidade.getText().toString().trim();
             estado = etEstado.getText().toString().trim();
+<<<<<<< HEAD
+=======
+            telefone = etTelefone.getText().toString().trim();
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
             if (TextUtils.isEmpty(email)) {
                 etEmail.setError("O campo Email deve ser preenchido!");
                 etEmail.requestFocus();
@@ -246,6 +289,13 @@ public class Cadastro_Usuario extends AppCompatActivity {
                 etCep.setError("O campo CEP deve ser preenchido!");
                 etCep.requestFocus();
                 return;
+<<<<<<< HEAD
+=======
+            }else if (TextUtils.isEmpty(telefone) || telefone.length() < 11){
+                etTelefone.setError("Preencha o campo Telefone corretamente");
+                etTelefone.requestFocus();
+                return;
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
             }
             // Talvez esses próximos não sejam necessários tendo em vista a checagem do CEP
             else if (TextUtils.isEmpty(rua)) {
@@ -317,6 +367,11 @@ public class Cadastro_Usuario extends AppCompatActivity {
                                 usuario.put("cidade", cidade);
                                 usuario.put("estado", estado);
                                 usuario.put("tipo", "Pessoa Fisica");
+<<<<<<< HEAD
+=======
+                                usuario.put("telefone", telefone);
+
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
                                 db.collection("Profile").document(id).set(usuario);
                                 Intent intent = new Intent(Cadastro_Usuario.this, Login.class);
                                 startActivity(intent);
@@ -338,6 +393,11 @@ public class Cadastro_Usuario extends AppCompatActivity {
             usuario.put("cidade", cidade);
             usuario.put("estado", estado);
             usuario.put("tipo", "Pessoa Fisica");
+<<<<<<< HEAD
+=======
+            usuario.put("telefone", telefone);
+
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
             db.collection("Profile").document(id).set(usuario);
             Intent intent1 = new Intent(Cadastro_Usuario.this, Login.class);
             startActivity(intent1);
@@ -392,4 +452,8 @@ public class Cadastro_Usuario extends AppCompatActivity {
             }
         }).start();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 080e5e49ea7ff066c30bda2f9089db457cf870e6
