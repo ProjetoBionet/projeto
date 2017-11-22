@@ -150,11 +150,6 @@ public class LobbyActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        }else if(id == R.id.nav_alterarp){
-            Intent intent = new Intent(LobbyActivity.this, Cadastro_Usuario.class);
-            intent.putExtra("atividade","alterar");
-            startActivity(intent);
-
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

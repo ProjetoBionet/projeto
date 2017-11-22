@@ -55,8 +55,7 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/emailV">
+                android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
@@ -71,8 +70,7 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/senhaV">
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/password"
