@@ -67,7 +67,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".alterarSenha"></activity>
+        <activity android:name=".alterarSenha" />
+        <activity android:name=".infoMaterial"></activity>
     </application>
 
 </manifest>

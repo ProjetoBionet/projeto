@@ -1,9 +1,13 @@
 package projeto.bionet.example.com.bionet;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -21,6 +25,8 @@ import com.google.gson.JsonElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static projeto.bionet.example.com.bionet.R.id.parent;
 
 public class PesquisaMaterial extends AppCompatActivity {
 
@@ -92,8 +98,7 @@ public class PesquisaMaterial extends AppCompatActivity {
                                 Coleta coleta = gson.fromJson(jsonElement, Coleta.class);
                                 coletaArray.add(coleta);
                             }
-                            //gerarLista(coletaArray);
-                            //mProgressDialog.dismiss();
+
                         }
                     }
                 });
@@ -120,23 +125,39 @@ public class PesquisaMaterial extends AppCompatActivity {
                         }
                     }
                 });
-
-
     }
 
     private void gerarLista(ArrayList array) {
 
+
         if (array.size() == 0) {
-            Toast.makeText(PesquisaMaterial.this, "Sua pesquisa retorno 0 resultados!",
+            Toast.makeText(PesquisaMaterial.this, "Sua pesquisa retornou 0 resultados!",
                     Toast.LENGTH_LONG).show();
         } else {
 
             coletaArrayRef = new ArrayList<>();
             coletaArrayRef = (ArrayList<Coleta>) array.clone();
-            AdapterListaResultado adapter = new AdapterListaResultado(array, this);
+            final AdapterListaResultado adapter = new AdapterListaResultado(array, this);
             lista.setAdapter(adapter);
 
+            lista.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View view, int posicao, long arg3)
+                {
+                    Coleta item = (Coleta) adapter.getItem(posicao);
+                    Intent intent = new Intent(PesquisaMaterial.this, infoMaterial.class);
+                    intent.putExtra("item", item);
+                    startActivity(intent);
+
+                    // Get data from your adapter,   the above code of line give the custom adapter's object of   current position of selected list item
+                }
+            });
+
         }
+
+
+
     }
 
     public void filtarLista(ArrayList<Coleta> array, String query){
@@ -144,12 +165,17 @@ public class PesquisaMaterial extends AppCompatActivity {
         ArrayList<Coleta> filtro = new ArrayList<>();
 
         for (Coleta a : array){
-            if(a.getMaterial().toLowerCase().contains(query.toLowerCase())){
-                filtro.add(a);
+            if (a.getStatus() != null) {
+                if (a.getMaterial().toLowerCase().contains(query.toLowerCase()) && a.getStatus().equalsIgnoreCase("Ativo")) {
+                    filtro.add(a);
+                }
             }
         }
 
         gerarLista(filtro);
     }
+
+
+
 
 }

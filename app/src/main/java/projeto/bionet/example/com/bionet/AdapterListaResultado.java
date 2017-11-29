@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -84,8 +85,21 @@ public class AdapterListaResultado extends BaseAdapter {
         tituloColeta.setText(titulo);
         descricao.setText(desc);
 
+       /* view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Coleta item = (Coleta) parent.getItemAtPosition(position);
+              //  Coleta item = (Coleta) v.getIt
+              //  Toast.makeText(v.getContext(), item.getMaterial(), Toast.LENGTH_SHORT).show();
+            }
+        }); */
+
+
+
+
         return view;
     }
+
 
 
 }

@@ -130,9 +130,7 @@ public class cadastroColeta extends AppCompatActivity {
                         etCidade.setText(document.getString("cidade"));
                         etEstado.setText(document.getString("estado"));
                     } else {
-                        Toast.makeText(cadastroColeta.this, "Documento Inexistente",
-                                Toast.LENGTH_LONG).show();
-                    }
+                                            }
                 } else {
                     Toast.makeText(cadastroColeta.this, "" + task.getException(),
                             Toast.LENGTH_LONG).show();

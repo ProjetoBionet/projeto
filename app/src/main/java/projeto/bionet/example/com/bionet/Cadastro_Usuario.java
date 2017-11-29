@@ -51,8 +51,6 @@ public class Cadastro_Usuario extends AppCompatActivity {
         RGrupo = (RadioGroup) findViewById(R.id.radiogroup);
         Intent intent1 = getIntent();
         if(intent1.getStringExtra("atividade").equalsIgnoreCase("alterar")){
-           /* emailV.setVisibility(View.INVISIBLE);
-            senhaV.setVisibility(View.INVISIBLE);*/
 
             ((LinearLayout) senhaV.getParent()).removeView(senhaV);
             ((LinearLayout) emailV.getParent()).removeView(emailV);
@@ -62,9 +60,9 @@ public class Cadastro_Usuario extends AppCompatActivity {
             senhaV.setVisibility(View.VISIBLE);
         }
         mAuth = FirebaseAuth.getInstance();
-        // mDatabase = FirebaseDatabase.getInstance().getReference();
+
         db = FirebaseFirestore.getInstance();
-        //teste = "";
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = getIntent();
         if (intent.getStringExtra("atividade").equalsIgnoreCase("alterar")){
@@ -116,7 +114,6 @@ public class Cadastro_Usuario extends AppCompatActivity {
                 }
             });
 
-// Talvez apagando isso não interfira em nada, já tá carregando os dados antes, e depois tbm.
 
 
             ((LinearLayout) RGrupo.getParent()).removeView(RGrupo);

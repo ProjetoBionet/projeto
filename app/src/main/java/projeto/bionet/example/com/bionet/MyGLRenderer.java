@@ -25,7 +25,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     float speedY = 0;   // (NEW)
     float z = -6.0f; // rotational speed for cube
     private static float angleCube = 0;
-    private static float speedCube = -1.5f;
+    private static float speedCube = -0.8f;
 
     // Constructor
     public MyGLRenderer(Context context) {
@@ -53,7 +53,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     // Call back after onSurfaceCreated() or whenever the window's size changes
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        if (height == 0) height = 1;   // To prevent divide by zero
+        if (height == 0) height = 1;
         float aspect = (float)width / height;
 
         // Set the viewport (display area) to cover the entire window
@@ -68,20 +68,18 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         gl.glMatrixMode(GL10.GL_MODELVIEW);  // Select model-view matrix
         gl.glLoadIdentity();                 // Reset
 
-        // You OpenGL|ES display re-sizing code here
-        // ......
-    }
+     }
 
     // Call back to draw the current frame.
     @Override
     public void onDrawFrame(GL10 gl) {
-        // Clear color and depth buffers using clear-values set earlier
+
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
         // ----- Render the Cube -----
-        gl.glLoadIdentity();                  // Reset the current model-view matrix
+        gl.glLoadIdentity();
         gl.glTranslatef(0.0f, 0.0f, -4.3f);
-        gl.glRotatef(angleCube, 0.5f, 0.5f, 0.1f);
+        gl.glRotatef(angleCube, 0.7f, 0.9f, 0.2f);
         cube.draw(gl);
         angleCube += speedCube;
 
